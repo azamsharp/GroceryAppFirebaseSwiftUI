@@ -41,13 +41,34 @@ struct ContentView: View {
                 } else {
                     if let snapshot = snapshot {
                         stores = snapshot.documents.compactMap { doc in
-                            let store = try? doc.data(as: Store.self)
+                            var store = try? doc.data(as: Store.self)
+                            if store != nil {
+                                store!.id = doc.documentID
+                            }
                             return store
                         }
                     }
                 }
             }
         
+    }
+    
+    private func deleteStore(at indexSet: IndexSet) {
+        indexSet.forEach { index in
+            
+            let store = stores[index]
+            // delete from the firestore database
+            db.collection("stores")
+                .document(store.id!)
+                .delete { error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        getAllStores()
+                    }
+                }
+            
+        }
     }
     
     var body: some View {
@@ -58,8 +79,11 @@ struct ContentView: View {
                 saveStore(store: Store(name: storeName))
             }
             
-            List(stores, id: \.name) { store in
-                Text(store.name)
+            List {
+                
+                ForEach(stores, id: \.name) { store in
+                    Text(store.name)
+                }.onDelete(perform: deleteStore)
             }
             
             Spacer()
