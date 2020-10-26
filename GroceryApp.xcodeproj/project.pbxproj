@@ -12,8 +12,9 @@
 		8D168A822540693500FD24C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D168A812540693500FD24C4 /* ContentView.swift */; };
 		8D168A842540693500FD24C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D168A832540693500FD24C4 /* Assets.xcassets */; };
 		8D168A872540693500FD24C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D168A862540693500FD24C4 /* Preview Assets.xcassets */; };
-		8D168A9025406A8300FD24C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D168A8F25406A8300FD24C4 /* GoogleService-Info.plist */; };
 		8D6287802540CB1200A36A3C /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D62877F2540CB1200A36A3C /* Store.swift */; };
+		8D6EE10525434A39009070E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D6EE10425434A39009070E2 /* GoogleService-Info.plist */; };
+		8D6EE10A25434EAE009070E2 /* StoreDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6EE10925434EAE009070E2 /* StoreDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +27,9 @@
 		8D168A832540693500FD24C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D168A862540693500FD24C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8D168A882540693500FD24C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D168A8F25406A8300FD24C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8D62877F2540CB1200A36A3C /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		8D6EE10425434A39009070E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8D6EE10925434EAE009070E2 /* StoreDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +76,11 @@
 				8D62877E2540CB0000A36A3C /* Models */,
 				8D168A7F2540693500FD24C4 /* GroceryAppApp.swift */,
 				8D168A812540693500FD24C4 /* ContentView.swift */,
-				8D168A8F25406A8300FD24C4 /* GoogleService-Info.plist */,
+				8D6EE10425434A39009070E2 /* GoogleService-Info.plist */,
 				8D168A832540693500FD24C4 /* Assets.xcassets */,
 				8D168A882540693500FD24C4 /* Info.plist */,
 				8D168A852540693500FD24C4 /* Preview Content */,
+				8D6EE10925434EAE009070E2 /* StoreDetailsView.swift */,
 			);
 			path = GroceryApp;
 			sourceTree = "<group>";
@@ -166,9 +169,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D6EE10525434A39009070E2 /* GoogleService-Info.plist in Resources */,
 				8D168A872540693500FD24C4 /* Preview Assets.xcassets in Resources */,
 				8D168A842540693500FD24C4 /* Assets.xcassets in Resources */,
-				8D168A9025406A8300FD24C4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +227,7 @@
 				8D6287802540CB1200A36A3C /* Store.swift in Sources */,
 				8D168A822540693500FD24C4 /* ContentView.swift in Sources */,
 				8D168A802540693500FD24C4 /* GroceryAppApp.swift in Sources */,
+				8D6EE10A25434EAE009070E2 /* StoreDetailsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

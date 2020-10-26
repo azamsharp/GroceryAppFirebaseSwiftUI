@@ -20,7 +20,7 @@ struct ContentView: View {
     }
     
     private func saveStore(store: Store) {
-       _ = try? db.collection("stores")
+        _ = try? db.collection("stores")
             .addDocument(from: store) { error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -72,27 +72,37 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
-            TextField("Enter store name", text: $storeName)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            Button("Save Store") {
-                saveStore(store: Store(name: storeName))
-            }
+        
+        NavigationView {
             
-            List {
+            VStack {
+                TextField("Enter store name", text: $storeName)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                Button("Save Store") {
+                    saveStore(store: Store(name: storeName))
+                }
                 
-                ForEach(stores, id: \.name) { store in
-                    Text(store.name)
-                }.onDelete(perform: deleteStore)
-            }
+                List {
+                    
+                    ForEach(stores, id: \.name) { store in
+                        NavigationLink(
+                            destination: StoreDetailsView(store: store))
+                        {
+                            Text(store.name)
+                        }
+                    }.onDelete(perform: deleteStore)
+                }.listStyle(PlainListStyle())
+                
+                Spacer()
+                    
+                    .onAppear(perform: {
+                        getAllStores()
+                    })
+                
+            }.padding()
             
-            Spacer()
-            
-                .onAppear(perform: {
-                    getAllStores()
-                })
-            
-        }.padding()
+            .navigationTitle("Stores")
+        }
     }
 }
 

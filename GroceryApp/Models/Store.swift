@@ -10,4 +10,5 @@ import Foundation
 struct Store: Codable {
     var id: String?
     let name: String
+    var items: [String]? = nil 
 }

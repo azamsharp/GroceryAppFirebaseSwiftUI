@@ -11,8 +11,9 @@ import FirebaseFirestoreSwift
 
 struct StoreDetailsView: View {
     
-    let store: Store
+    @State var store: Store
     @State private var storeName: String = ""
+    @State private var groceryItemName: String = ""
     let db = Firestore.firestore()
     
     private func updateStore() {
@@ -30,14 +31,59 @@ struct StoreDetailsView: View {
         
     }
     
-    var body: some View {
-        VStack {
-            TextField(store.name, text: $storeName)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            Button("Update") {
-                updateStore()
+    private func loadGroceryItems() {
+        let ref = db.collection("stores")
+            .document(store.id!)
+        
+        ref.getDocument { doc, error in
+            if let doc = doc, doc.exists {
+                if let store = try? doc.data(as: Store.self) {
+                    self.store = store
+                    self.store.id = doc.documentID
+                }
+            } else {
+                print("Document does not exists!")
             }
-        }.padding()
+        }
+        
+    }
+    
+    private func saveGroceryItem() {
+        
+        db.collection("stores")
+            .document(store.id!)
+            .updateData([
+                "items": FieldValue.arrayUnion([groceryItemName])
+            ]) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    // load the docs and populate the items
+                    loadGroceryItems()
+                }
+            }
+        
+    }
+    
+    var body: some View {
+       
+        NavigationView {
+            VStack {
+                TextField("Enter item name", text: $groceryItemName)
+                Button("Add Item") {
+                    saveGroceryItem()
+                }
+                
+                if let items = store.items {
+                    List(items, id: \.self) { item in
+                        Text(item)
+                    }
+                }
+                
+                Spacer()
+                
+            }.padding()
+        }.navigationTitle(store.name)
     }
 }
 
